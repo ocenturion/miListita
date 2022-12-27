@@ -1,0 +1,193 @@
+body{
+    margin: 10px;
+}
+
+.p-1{
+    padding: .25rem !important;
+}
+
+.p-2{
+    padding: .5rem !important;
+}
+
+.m-1{
+    margin: .25rem !important;
+}
+
+.m-2{
+    margin: .5rem !important;
+}
+
+/* Formulario: precio, cantidad, articulo */
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.flex-container > label{
+    width: 30%;
+    align-self: center;
+}
+
+.flex-container > input{
+    width: 67%;
+}
+
+.flex-container > textarea{
+    width: 67%;
+}
+
+.flex-container > input {
+    height: 30px;
+    font-size: 20px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.btnAgregar{
+    width: 100%;
+    background-color: #FF8181;
+    padding: 2%;
+    text-decoration: none;
+    border-radius: 7px;
+    color: #fff;
+}
+
+.btnCheckAll{
+    background-color: #FF8181;
+    text-decoration: none;
+    border-radius: 3px;
+    color: #fff;
+    padding-top: 5px;
+    padding: 5px 5px 0 5px;
+    border: 1px solid #FF8181;
+}
+
+.btnCheckNone{
+    border: 1px solid #FF8181;
+    text-decoration: none;
+    border-radius: 3px;
+    color: #FF8181;
+    padding-top: 5px;
+    padding: 5px 5px 0 5px;
+}
+
+.btnOrder{
+    color: #FF8181;
+}
+
+.btn-primary{
+    left: 0;
+    right: 0;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    text-align: center;
+    background-color: #FF8181;
+    position: fixed;
+    bottom: 0;
+    width: 60%;
+    border-radius: 7px;
+}
+
+.btn-primary a:link, a:active, a:visited{
+    text-decoration: none;
+}
+
+.btn-danger{
+    right: 0;
+    margin:10px 5% 1%;
+    padding: 4% 0;
+    text-align: center;
+    background-color: #fff;
+    border: 2px solid #f24;
+    position: fixed;
+    bottom: 0;
+    width: 25%;
+    border-radius: 7px;
+    color: #ff2424;
+}
+
+.text-primary{
+    color: #FF8181;
+}
+
+.totalArtSelec{
+    color: #000;
+    margin:5px 0 10px 0;
+}
+
+.table{
+    margin-bottom: 150px;
+}
+
+.totalArt{
+    color: #fff;
+    margin:10px 0 5px 0;
+}
+
+.table-noBorder{
+    border-collapse: collapse;
+}
+
+.table-striped tr:nth-child(even){
+    background-color: #eee;
+}
+
+.table-striped tr:nth-child(odd){
+    background-color: #fff;
+    border-left: #eee;
+    border-right: #eee;
+}
+
+.table-striped td{
+    padding: 15px 0;
+}
+
+.cantArt,.cantArtSelect{
+    color: #FF8181;
+    font-size: small;
+}
+
+/* Modal */
+
+.modal{
+    margin: auto 2em;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.modalHeader{
+    background-color: #000;
+    padding: 5%;
+}
+
+.modalBody{
+    padding: 15px;
+}
+
+.btnAceptar{
+    background-color: rgb(255, 129, 129);
+    border-radius: 7px;
+    border: 1px solid #FF8181;
+    padding: 10px;
+    color: #fff;
+}
+
+.btnAceptar:active{
+    background-color: rgb(218, 135, 135);
+    border-color: rgb(218, 133, 133);
+}
+
+.btnCancelar{
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgb(216, 216, 216);
+}

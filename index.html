@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi listita</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF8181">
+    <link rel="apple-touch-icon" href="images/icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/serviceWorker.js');
+        }
+    </script>
+      
+</head>
+<body>
+    <div>
+        Desea agregar a pantalla de inicio? <button id="btnAdd">+</button>
+    </div>
+    <div class="container">
+        <div class="flex-container">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" placeholder="0">
+        </div>
+        <div class="flex-container">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" placeholder="1">
+        </div>
+        <div class="flex-container">
+            <label for="art">Articulo</label>
+            <textarea name="articulo" id="art" cols="30" rows="4" placeholder="Articulo generico"></textarea>
+        </div>
+        <div class="text-right p-2">
+            <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a>
+        </div>
+
+        <hr>
+
+        <div>
+            <p class="cantArt">Cant. Art.: <strong><span id="cantArt">0</span></strong></p>
+            <p class="cantArtSelect">Cant. Art. Seleccionados: <strong><span id="cantArtSelect">0</span></strong></p>
+            <hr>
+            <table class="table table-striped table-noBorder">
+                <thead>
+                    <tr>
+                        <th style="width: 1%; padding: 5px;">
+                            <a id="checkAll" class="btnCheckNone">
+                                <svg width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                            </a>
+                        </th>
+                        <th style="width: 70%; text-align: center;">
+                            <a id="detalle" class="">
+                                <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                  </svg>
+                            </a>
+                        </th>
+                        <th style="width: 3%"></th>
+                        <th style="width: 25%; text-align: center;">
+                            <a id="monto" class="">
+                                <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                  </svg>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="listArt">
+                    <tr>
+                        <td class="text-center">
+                            <input id="chkbox" type="checkbox" onclick="reloadSubTotal()">
+                        </td>
+                        <td >
+                            Galletitas dulces 
+                            <br><span class="text-primary">3 x 350</span>
+                        </td>
+                        <td >$</td>
+                        <td style="width: 25%;text-align: right;">1050.00</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <input id="chkbox" type="checkbox" onclick="reloadSubTotal()">
+                        </td>
+                        <td >
+                            azucar 
+                            <br><span class="text-primary">3 x 1000</span>
+                        </td>
+                        <td >$</td>
+                        <td style="width: 25%;text-align: right;">3000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="btn-primary">
+                <h3 class="totalArt">TOTAL: <strong><br>$<span id="total">0</span></strong></h3>
+                <p class="totalArtSelec">Total art. no tildados: <strong><br>$<span id="subTotal">0</span></strong></p>
+            </div>
+            <div class="btn-danger" id="limpiarTabla">
+                <svg width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg>
+            </div>
+        </div>
+    </div>
+
+    <dialog id="modalConfirmacion" class="modal">
+        <div class="modalHeader text-right p-2">
+            <button onclick="modalConfirmacion.close()">X</button>
+        </div>
+        <div class="modalBody m-2">
+            <p id="msg"></p>
+        </div>
+        <div class="text-right m-2">
+            <button onclick="modalConfirmacion.close()" class="btnCancelar">Cancelar</button>
+            <button id="btnAceptar" class="btnAceptar">Aceptar</button>
+        </div>
+    </dialog>
+
+    <script src="main.js"></script>
+
+    <script>
+        window.onload = ()=>{
+            calcCantArt()
+            calcCantArtSelect()
+            calcTotal()
+            reloadSubTotal()
+        }
+
+        function reloadSubTotal() {
+            //recorremos la tabla y calculamos el total
+            let tabla = document.getElementById('listArt').children
+            let subTotal = 0
+            for (let i = 0; i < tabla.length; i++) {
+                if (!tabla[i].children[0].children[0].checked) {
+                    subTotal += parseFloat(tabla[i].children[3].innerHTML)
+                }
+                document.getElementById('subTotal').innerHTML= subTotal
+            }
+
+            calcCantArtSelect()
+            valEstadoCheckAll()
+        }
+
+        function agregarArt(e) {
+            e.preventDefault()
+            let precio = document.getElementById('precio').value
+            if(precio.length == 0){
+                precio = 0
+            }
+
+            let cant = document.getElementById('cantidad').value
+            if (cant.length == 0) {
+                cant=1
+            }
+            
+            let art = document.getElementById('art').value.length>0?document.getElementById('art').value:'Articulo generico'
+
+            document.getElementById('listArt').innerHTML += `<tr>
+                    <td style="width: 5%;padding:5px" class="text-center">
+                        <input type="checkbox" onclick="reloadSubTotal(this)">
+                    </td>
+                    <td style="width: 55%">
+                        ${art} 
+                        <br><span class="text-primary">${cant} x ${precio}</span>
+                    </td>
+                    <td style="width: 5%">$</td>
+                    <td style="width: 25%;text-align: right;">${parseFloat(precio * cant,2)}</td>
+                </tr>
+            `
+
+            document.getElementById('precio').value=''
+            document.getElementById('cantidad').value=''
+            calcCantArt()
+            calcTotal()
+            reloadSubTotal()
+        }
+
+        function calcCantArt() {
+            let cantArt = document.getElementById('listArt').children.length
+            document.getElementById('cantArt').innerHTML = cantArt
+        }
+
+        function calcCantArtSelect() {
+            // Obtener todos los input de tipo checkbox en la tabla
+            let checkboxes = document.querySelectorAll("table input[type=checkbox]");
+
+            // Contador para llevar la cuenta de los checkboxes seleccionados
+            let contador = 0;
+
+            // Recorrer los checkboxes y sumar 1 al contador si está seleccionado
+            for (var i = 0; i < checkboxes.length; i++) {
+              if (checkboxes[i].checked) {
+                contador++;
+              }
+            }
+            document.getElementById('cantArtSelect').innerHTML = contador
+        }
+
+        function calcTotal() {
+            //recorremos la tabla y calculamos el total
+            let tabla = document.getElementById('listArt').children
+            let total = 0
+            for (let i = 0; i < tabla.length; i++) {
+                total += parseFloat(tabla[i].children[3].innerHTML)
+                
+                document.getElementById('total').innerHTML= total
+            }
+        }
+
+        function valEstadoCheckAll() {
+            let tabla = document.getElementById('listArt').children
+            let allChecked = true
+            let cantSelec =0
+            let cantNoSelec =0
+            for (let i = 0; i < tabla.length; i++) {
+                if (!tabla[i].children[0].children[0].checked) {
+                    cantNoSelec++
+                }else{
+                    cantSelec++
+                }
+            }
+            if (cantNoSelec == tabla.length) {
+                document.getElementById('checkAll').className= 'btnCheckNone'
+                checkAll=true
+            }else if (cantSelec == tabla.length) {
+                document.getElementById('checkAll').className= 'btnCheckAll'
+                checkAll=false
+            }
+        }
+
+    </script>
+    <script>
+        let checkAll = true
+        let ascending = true
+
+        // Programacion basada en eventos para que el codigo sea mas facil de mantener y entender, segun chatGPT
+        document.getElementById('limpiarTabla').addEventListener('click', ()=>{
+            let tabla = document.getElementById('listArt').children
+            let cantSelec =0
+            
+            for (let i = 0; i < tabla.length; i++) {
+                if (tabla[i].children[0].children[0].checked) {
+                    cantSelec++
+                }
+            }
+            
+            if (cantSelec == tabla.length || cantSelec == 0) {
+                document.getElementById('msg').innerHTML='¿Esta seguro que desea eliminar <span class="text-primary"><strong>Todos</strong></span> los articulos?'
+            }else if (cantSelec < tabla.length && cantSelec > 0) {
+                document.getElementById('msg').innerHTML='¿Esta seguro que desea eliminar los articulos seleccionados?'
+            }
+            modalConfirmacion.showModal()
+        })
+
+        document.getElementById('btnAceptar').addEventListener('click',()=>{
+
+            let tabla = document.getElementById('listArt').children
+            let cantSelec =0
+            
+            for (let i = 0; i < tabla.length; i++) {
+                if (tabla[i].children[0].children[0].checked) {
+                    cantSelec++
+                }
+            }
+            
+            if (cantSelec == tabla.length || cantSelec == 0) {
+                document.getElementById('listArt').innerHTML=''                
+            }else if (cantSelec < tabla.length && cantSelec > 0) {
+                for (let i = 0; i < tabla.length; i++) {
+                    if (tabla[i].children[0].children[0].checked) {
+                        tabla[i].parentNode.removeChild(tabla[i])
+                        i=0
+                    }
+                }
+            }
+
+            calcCantArt()
+            calcCantArtSelect()
+            modalConfirmacion.close()
+        })
+
+        document.getElementById('checkAll').addEventListener('click',()=>{
+            //recorremos la tabla y tildamos todos los check
+            let tabla = document.getElementById('listArt').children
+            
+            for (let i = 0; i < tabla.length; i++) {
+                tabla[i].children[0].children[0].checked= checkAll
+            }
+            if (checkAll) {
+                document.getElementById('checkAll').className= 'btnCheckAll'
+                checkAll=false
+            }else{
+                document.getElementById('checkAll').className= 'btnCheckNone'
+                checkAll=true
+            }
+            calcCantArtSelect()
+            reloadSubTotal()
+        })
+
+        document.getElementById('detalle').addEventListener('click',()=>{
+            console.log('entre a detalle ', ascending)
+            document.getElementById('detalle').className= 'btnOrder'
+            document.getElementById('monto').className= ''
+
+            var table = document.getElementById('listArt');
+            var rows = table.rows;
+            let rowArray = []
+
+            for (let i = 0; i < rows.length; i++) {
+                rowArray.push(
+                    {
+                        'id':i,
+                        'detalle': rows[i].cells[1].textContent.trim().toLowerCase(),
+                        'row': '<tr>'+rows[i].innerHTML.trim()+'</tr>'
+                    }
+                )
+            }
+            var compare = function(row1, row2) {
+                // Obtener el valor de la celda en la columna especificada
+                var val1 = row1.detalle;
+                var val2 = row2.detalle;
+                // Comparar los valores y devolver el resultado
+                if (ascending) {
+                  // Orden ascendente
+                  if (val1 < val2) {
+                    return -1;
+                  }
+                  if (val1 > val2) {
+                    return 1;
+                  }
+                } else {
+                  // Orden descendente
+                  if (val1 > val2) {
+                    return -1;
+                  }
+                  if (val1 < val2) {
+                    return 1;
+                  }
+                }
+                return 0;
+            };
+            // Ordenar la matriz de filas utilizando la función de comparación
+            rowArray.sort(compare)
+            ascending?ascending=false:ascending=true
+            
+
+            table.innerHTML = ''
+            // Reinsertar las filas en el orden correcto
+            for (var i = 0; i < rowArray.length; i++) {
+                table.innerHTML+= rowArray[i].row;
+            }
+            reloadSubTotal()
+        })
+
+        document.getElementById('monto').addEventListener('click',()=>{
+            
+            document.getElementById('monto').className= 'btnOrder'
+            document.getElementById('detalle').className= ''
+
+            var table = document.getElementById('listArt');
+            var rows = table.rows;
+            let rowArray = []
+
+            for (let i = 0; i < rows.length; i++) {
+                rowArray.push(
+                    {
+                        'id':i,
+                        'monto': rows[i].cells[3].textContent.trim(),
+                        'row': '<tr>'+rows[i].innerHTML.trim()+'</tr>'
+                    }
+                )
+            }
+            var compare = function(row1, row2) {
+                // Obtener el valor de la celda en la columna especificada
+                var val1 = parseFloat(row1.monto);
+                var val2 = parseFloat(row2.monto);
+                // Comparar los valores y devolver el resultado
+                if (ascending) {
+                  // Orden ascendente
+                  if (val1 < val2) {
+                    return -1;
+                  }
+                  if (val1 > val2) {
+                    return 1;
+                  }
+                } else {
+                  // Orden descendente
+                  if (val1 > val2) {
+                    return -1;
+                  }
+                  if (val1 < val2) {
+                    return 1;
+                  }
+                }
+                return 0;
+            };
+            // Ordenar la matriz de filas utilizando la función de comparación
+            rowArray.sort(compare)
+            ascending?ascending=false:ascending=true
+            
+
+            table.innerHTML = ''
+            // Reinsertar las filas en el orden correcto
+            for (var i = 0; i < rowArray.length; i++) {
+                table.innerHTML+= rowArray[i].row;
+            }
+            reloadSubTotal()
+        })
+    </script>
+</body>
+</html>
