@@ -38,6 +38,7 @@ window.addEventListener('appinstalled', (evt) => {
 
 validInstall()
 function validInstall() {
+    console.log('entre a validInstall')
     if (navigator.standalone) {
         btnAdd.style.display='none'
     }
