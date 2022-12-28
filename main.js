@@ -35,8 +35,3 @@ btnAdd.addEventListener('click', (e) => {
 window.addEventListener('appinstalled', (evt) => {
   console.log('La aplicación se ha instalado');
 });
-
-validInstall()
-function validInstall() {
-    alert('entre a validInstall: '+ navigator.appVersion)
-}
