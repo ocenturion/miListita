@@ -38,5 +38,5 @@ window.addEventListener('appinstalled', (evt) => {
 
 validInstall()
 function validInstall() {
-    console.log('entre a validInstall: '+ navigator.appVersion)
+    alert('entre a validInstall: '+ navigator.appVersion)
 }
