@@ -36,3 +36,8 @@ window.addEventListener('appinstalled', (evt) => {
   console.log('La aplicación se ha instalado');
 });
 
+function validInstall() {
+    if (navigator.standalone) {
+        btnAdd.style.display='none'
+    }
+}
