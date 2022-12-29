@@ -6,7 +6,7 @@ var filesToCache = [
   "/main.js",
   "/style.css",
   "/image/icon-144x144.png",
-  "/image/icon-512x512.png",
+  "/image/icon-512x512.png"
 ];
 
 // Instala el Service Worker
