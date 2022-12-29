@@ -39,13 +39,11 @@ self.addEventListener("fetch", (e) => {
         return fetch(request).then(function (response) {
           // si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
           if (response) {
-            console.log(
-              "[serviceWorker] Caching new resource",
-              e.request.url
-            );
+            console.log("[serviceWorker] Caching new resource",e.request.url);
             // alert('[serviceWorker] Caching new resource', e.request.url)
+            let responseToCache = response.clone()
             caches.open(cacheName).then(function (cache) {
-              cache.put(e.request, response);
+              cache.put(e.request, responseToCache);
             });
           }
           return response;
