@@ -29,7 +29,7 @@ self.addEventListener('install', (e) => {
   self.addEventListener('fetch', (e) => {
     e.respondWith(
         // comprobamos si el recurso solicitado se encuentra en el cache
-        cache.match(e.request).then(function(response){
+        caches.match(e.request).then(function(response){
             if (response) {
                 console.log('[serviceWorker] Found in cache', e.request.url)
                 alert('[serviceWorker] Found in cache', e.request.url)
