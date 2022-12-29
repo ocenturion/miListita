@@ -20,9 +20,26 @@ self.addEventListener("install", (e) => {
 });
 
 // Activa el Service Worker
+// self.addEventListener("activate", (e) => {
+//   console.log("Service Worker activado");
+// });
+
+// Activa el Service Worker y elimina cualquier cache antiguo
 self.addEventListener("activate", (e) => {
-  console.log("Service Worker activado");
-});
+    console.log("[Service Worker] Activated");
+    e.waitUntil(
+      caches.keys().then((keyList) => {
+        return Promise.all(
+          keyList.map((key) => {
+            if (key !== cacheName) {
+              console.log("[Service Worker] Removing old cache", key);
+              return caches.delete(key);
+            }
+          })
+        );
+      })
+    );
+  });
 
 // Controla las solicitudes de recursos
 self.addEventListener("fetch", (e) => {
