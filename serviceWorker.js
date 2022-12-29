@@ -34,7 +34,7 @@ self.addEventListener('install', (e) => {
             console.log('Linea 34: ', response)
             if (response) {
                 console.log('[serviceWorker] Found in cache', e.request.url)
-                alert('[serviceWorker] Found in cache', e.request.url)
+                // alert('[serviceWorker] Found in cache', e.request.url)
                 return response
             }
             // si no esta en cache, lo solicitamos a travez de internet
@@ -44,7 +44,7 @@ self.addEventListener('install', (e) => {
                 // si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
                 if (response) {
                     console.log('[serviceWorker] Caching new resource', e.request.url)
-                    alert('[serviceWorker] Caching new resource', e.request.url)
+                    // alert('[serviceWorker] Caching new resource', e.request.url)
                     caches.open(cacheName).then(function (cache) {
                         cache.put(e.request, response)
                     })
