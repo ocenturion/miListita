@@ -1,7 +1,7 @@
 var cacheName = "miListitaCache";
 
 var filesToCache = [
-  "/index.html",
+  "index.html",
   "/main.js",
   "/style.css",
   "/image/icon-144x144.png",
