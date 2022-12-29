@@ -41,69 +41,30 @@ self.addEventListener("activate", (e) => {
     );
   });
 
-// Controla las solicitudes de recursos
+// Maneja las solicitudes de recursos utilizando el cache o solicitándolos a través de Internet
 self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    //si no hay una nueva version disponible, comprobamos si el recurso solicitado se encuentra en el cache
-    caches.match(e.request).then(function (response) {
+    e.respondWith(
+      // Intentamos encontrar el recurso en el cache
+      caches.match(e.request).then((response) => {
+        // Si encontramos el recurso en el cache, lo devolvemos
         if (response) {
-          console.log("[serviceWorker] Found in cache", e.request.url);
-          // alert('[serviceWorker] Found in cache', e.request.url)
+          console.log("[Service Worker] Found in cache", e.request.url);
           return response;
         }
-        // si no esta en cache, lo solicitamos a travez de internet
+  
+        // Si no encontramos el recurso en el cache, lo solicitamos a través de Internet
         var request = e.request.clone();
-        return fetch(request).then(function (response) {
-          // si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
-          if (response) {
-            console.log("[serviceWorker] Caching new resource",e.request.url);
-            // alert('[serviceWorker] Caching new resource', e.request.url)
-            caches.open(cacheName).then(function (cache) {
-                console.log(e.request)
-                console.log(response)
+        return fetch(request).then((response) => {
+          // Si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
+          if (response && response.status === 200) {
+            console.log("[Service Worker] Caching new resource", e.request.url);
+            caches.open(cacheName).then((cache) => {
               cache.put(e.request, response);
             });
           }
           return response;
         });
       })
-    // self.registration
-    //   .update()
-    //   .then(function () {
-    //     // si hay una nueva version disponible,vaciamos el almacenamiento en el cache y volvemos a almacenar los archivos necesarios
-    //     console.log("[serviceWorker] updating cache");
-    //     return caches.open(cacheName).then(function (cache) {
-    //       return cache.addAll(filesToCache).then(function () {
-    //         console.log("[serviceWorker] cache updated");
-    //       });
-    //     });
-    //   })
-    //   .catch(function (error) {
-    //     //si no hay una nueva version disponible, comprobamos si el recurso solicitado se encuentra en el cache
-    //     caches.match(e.request).then(function (response) {
-    //       if (response) {
-    //         console.log("[serviceWorker] Found in cache", e.request.url);
-    //         // alert('[serviceWorker] Found in cache', e.request.url)
-    //         return response;
-    //       }
-    //       // si no esta en cache, lo solicitamos a travez de internet
-    //       var request = e.request.clone();
-    //       return fetch(request).then(function (response) {
-    //         // si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
-    //         if (response) {
-    //           console.log(
-    //             "[serviceWorker] Caching new resource",
-    //             e.request.url
-    //           );
-    //           // alert('[serviceWorker] Caching new resource', e.request.url)
-    //           caches.open(cacheName).then(function (cache) {
-    //             cache.put(e.request, response);
-    //           });
-    //         }
-    //         return response;
-    //       });
-    //     });
-    //   })
-  );
-  console.log("Solicitud de recursos recibida");
-});
+    );
+  });
+  
