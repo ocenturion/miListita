@@ -43,7 +43,7 @@ self.addEventListener("fetch", (e) => {
             // alert('[serviceWorker] Caching new resource', e.request.url)
             let responseToCache = response.clone()
             caches.open(cacheName).then(function (cache) {
-              cache.put(e.request, responseToCache);
+              cache.put(request, responseToCache);
             });
           }
           return response;
