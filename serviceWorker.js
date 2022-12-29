@@ -27,9 +27,11 @@ self.addEventListener('install', (e) => {
   
   // Controla las solicitudes de recursos
   self.addEventListener('fetch', (e) => {
+    console.log('entre a fetch')
     e.respondWith(
         // comprobamos si el recurso solicitado se encuentra en el cache
         caches.match(e.request).then(function(response){
+            console.log('Linea 34: ', response)
             if (response) {
                 console.log('[serviceWorker] Found in cache', e.request.url)
                 alert('[serviceWorker] Found in cache', e.request.url)
@@ -38,6 +40,7 @@ self.addEventListener('install', (e) => {
             // si no esta en cache, lo solicitamos a travez de internet
             var request = e.request.clone()
             return fetch(request).then(function(response){
+                console.log('Linea 43: ', response)
                 // si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
                 if (response) {
                     console.log('[serviceWorker] Caching new resource', e.request.url)
