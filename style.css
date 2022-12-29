@@ -174,7 +174,8 @@ body{
 }
 
 .btnAceptar{
-    background-color: rgb(255, 129, 129);
+    /* background-color: rgb(255, 129, 129); */
+    background-color: blue;
     border-radius: 7px;
     border: 1px solid #FF8181;
     padding: 10px;
