@@ -59,7 +59,7 @@ self.addEventListener("fetch", (e) => {
           if (response && response.status === 200) {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
-              cache.put(e.request, response);
+            //   cache.put(e.request, response);
             });
           }
           return response;
