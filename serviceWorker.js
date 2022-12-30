@@ -57,7 +57,7 @@ self.addEventListener("fetch", (e) => {
         var request = e.request.clone();
         return fetch(request).then((response) => {
           // Si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
-          if (response && response.status === 200) {
+          if (response && response.status === 200 && response.url.startsWith('https')) {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
               cache.put(e.request, response);
