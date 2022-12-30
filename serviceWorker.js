@@ -1,7 +1,7 @@
 var cacheName = "miListitaCache";
 
 var filesToCache = [
-  "index.html",
+  "/index.html",
   "/main.js",
   "/style.css",
   "/manifest.json",
@@ -63,7 +63,6 @@ self.addEventListener("fetch", (e) => {
           if (response2 && response2.status === 200 && response2.url.startsWith('https')) {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
-                console.log('almaceno: ', request,response)
               cache.put(request.url, response);
             });
           }
