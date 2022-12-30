@@ -61,6 +61,7 @@ self.addEventListener("fetch", (e) => {
           if (response && response.status === 200 && response.url.startsWith('https')) {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
+                console.log('almaceno: ', request)
               cache.put(request, response);
             });
           }
