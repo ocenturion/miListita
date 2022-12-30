@@ -56,6 +56,7 @@ self.addEventListener("fetch", (e) => {
         // Si no encontramos el recurso en el cache, lo solicitamos a través de Internet
         var request = e.request.clone();
         return fetch(request).then((response) => {
+            let data = response.json()
           // Si la solicitud es exitosa, almacenamos el recurso en el cache para futuras solicitudes
           if (response && response.status === 200 && response.url.startsWith('https')) {
             console.log("[Service Worker] Caching new resource", e.request.url);
@@ -63,7 +64,7 @@ self.addEventListener("fetch", (e) => {
               cache.put(e.request, response);
             });
           }
-          return response;
+          return data;
         });
       })
     );
