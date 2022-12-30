@@ -46,6 +46,8 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(
       // Intentamos encontrar el recurso en el cache
       caches.match(e.request).then((response) => {
+        console.log("[Service Worker] 49: ", e.request.url);
+        
         // Si encontramos el recurso en el cache, lo devolvemos
         if (response) {
           console.log("[Service Worker] Found in cache", e.request.url);
