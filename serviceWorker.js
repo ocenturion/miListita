@@ -61,7 +61,7 @@ self.addEventListener("fetch", (e) => {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
                 console.log('almaceno: ', request,response)
-              cache.put(request, response);
+              cache.put(request.url, response);
             });
           }
           return data;
