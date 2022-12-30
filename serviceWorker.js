@@ -46,7 +46,6 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(
       // Intentamos encontrar el recurso en el cache
       caches.match(e.request).then((response) => {
-        console.log(response,e.request)
         // Si encontramos el recurso en el cache, lo devolvemos
         if (response) {
           console.log("[Service Worker] Found in cache", e.request.url);
@@ -61,7 +60,7 @@ self.addEventListener("fetch", (e) => {
           if (response && response.status === 200 && response.url.startsWith('https')) {
             console.log("[Service Worker] Caching new resource", e.request.url);
             caches.open(cacheName).then((cache) => {
-                console.log('almaceno: ', request)
+                console.log('almaceno: ', request,response)
               cache.put(request, response);
             });
           }
