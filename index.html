@@ -43,12 +43,12 @@
             <!-- <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a> -->
         </div>
 
-        <hr>
-
+        
         <div>
-            <p class="cantArt">Cant. Art.: <strong><span id="cantArt">0</span></strong></p>
-            <p class="cantArtSelect">Cant. Art. Seleccionados: <strong><span id="cantArtSelect">0</span></strong></p>
-            <hr>
+                <hr>
+                <p class="cantArt">Cant. Art.: <strong><span id="cantArt">0</span></strong></p>
+                <p class="cantArtSelect">Cant. Art. Seleccionados: <strong><span id="cantArtSelect">0</span></strong></p>
+                <hr>
             <table class="table table-striped table-noBorder">
                 <thead>
                     <tr>
@@ -95,7 +95,7 @@
                 </tbody>
             </table>
 
-            <div class="btn-primary">
+            <div id="totales" class="btn-primary">
                 <h3 class="totalArt">TOTAL: <strong><br>$<span id="total">0</span></strong></h3>
                 <p class="totalArtSelec">Total art. no tildados: <strong><br>$<span id="subTotal">0</span></strong></p>
             </div>
@@ -148,6 +148,8 @@
 
         function agregarArt(e) {
             e.preventDefault()
+            navigator.vibrate(10);
+
             let precio = document.getElementById('precio').value
             if(precio.length == 0){
                 precio = 0
@@ -240,6 +242,10 @@
     <script>
         let checkAll = true
         let ascending = true
+
+        document.getElementById('precio').addEventListener('click',()=>{
+            document.getElementById('totales').style.display='absolute'
+        })
 
         // Programacion basada en eventos para que el codigo sea mas facil de mantener y entender, segun chatGPT
         document.getElementById('limpiarTabla').addEventListener('click', ()=>{
@@ -414,6 +420,9 @@
             }
             reloadSubTotal()
         })
+
+        
+
     </script>
 </body>
 </html>
