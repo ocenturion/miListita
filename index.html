@@ -19,7 +19,10 @@
 </head>
 <body>
     <div id="instalacion">
-        Desea agregar a pantalla de inicio? <button id="btnAdd">+</button>
+        Desea agregar a pantalla de inicio? 
+        <button id="btnAdd">
+            <span class="button_top">+</span>
+        </button>
     </div>
     <div class="container">
         <div class="flex-container">
@@ -34,8 +37,11 @@
             <label for="art">Articulo</label>
             <textarea name="articulo" id="art" cols="30" rows="4" placeholder="Articulo generico"></textarea>
         </div>
-        <div class="text-right p-2">
-            <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a>
+        <div class="text-right">
+            <button onclick="agregarArt(event)">
+                <span class="button_top"> Agregar</span>
+            </button>
+            <!-- <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a> -->
         </div>
 
         <hr>
@@ -73,8 +79,12 @@
                 </thead>
                 <tbody id="listArt">
                     <tr>
-                        <td class="text-center">
-                            <input id="chkbox" type="checkbox" onclick="reloadSubTotal()">
+                        <td style="width: 6%;padding:5px" class="text-center">
+                            <!-- <input id="chkbox" type="checkbox" onclick="reloadSubTotal()"> -->
+                            <label class="containerCheck">
+                                <input type="checkbox" onclick="reloadSubTotal(this)">
+                                <div class="checkmark"></div>
+                            </label>
                         </td>
                         <td >
                             Galletitas dulces 
@@ -152,8 +162,11 @@
             let art = document.getElementById('art').value.length>0?document.getElementById('art').value:'Articulo generico'
 
             document.getElementById('listArt').innerHTML += `<tr>
-                    <td style="width: 5%;padding:5px" class="text-center">
-                        <input type="checkbox" onclick="reloadSubTotal(this)">
+                    <td style="width: 6%;padding:5px" class="text-center">
+                        <label class="containerCheck">
+                            <input type="checkbox" onclick="reloadSubTotal(this)">
+                            <div class="checkmark"></div>
+                        </label>
                     </td>
                     <td style="width: 55%">
                         ${art} 
@@ -209,7 +222,7 @@
             let cantSelec =0
             let cantNoSelec =0
             for (let i = 0; i < tabla.length; i++) {
-                if (!tabla[i].children[0].children[0].checked) {
+                if (!tabla[i].children[0].children[0].children[0].checked) {
                     cantNoSelec++
                 }else{
                     cantSelec++
@@ -235,7 +248,7 @@
             let cantSelec =0
             
             for (let i = 0; i < tabla.length; i++) {
-                if (tabla[i].children[0].children[0].checked) {
+                if (tabla[i].children[0].children[0].children[0].checked) {
                     cantSelec++
                 }
             }
@@ -254,7 +267,7 @@
             let cantSelec =0
             
             for (let i = 0; i < tabla.length; i++) {
-                if (tabla[i].children[0].children[0].checked) {
+                if (tabla[i].children[0].children[0].children[0].checked) {
                     cantSelec++
                 }
             }
@@ -280,7 +293,7 @@
             let tabla = document.getElementById('listArt').children
             
             for (let i = 0; i < tabla.length; i++) {
-                tabla[i].children[0].children[0].checked= checkAll
+                tabla[i].children[0].children[0].children[0].checked= checkAll
             }
             if (checkAll) {
                 document.getElementById('checkAll').className= 'btnCheckAll'

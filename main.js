@@ -1,5 +1,6 @@
 let deferredPrompt;
 const btnAdd = document.getElementById('btnAdd');
+const contBtnAdd = document.getElementById('instalacion')
 
 window.addEventListener('beforeinstallprompt', (e) => {
     console.log('entre a beforeinstallprompt')
@@ -13,7 +14,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 btnAdd.addEventListener('click', (e) => {
   // Oculta el botón de instalación
-  btnAdd.style.display = 'none';
+  contBtnAdd.style.display = 'none';
   // Comprueba si el evento "beforeinstallprompt" está definido
   if (deferredPrompt) {
     // Muestra la ventana emergente de instalación
