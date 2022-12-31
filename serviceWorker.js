@@ -94,7 +94,7 @@ self.addEventListener("install", (event) => {
       // Al definir {cache: 'reload'} en la nueva consulta asegurara que la
       // respuesta no sea desde el caché de HTTP; i.e., esta será
       // de la red.
-      await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
+      await cache.addAll(new Request(OFFLINE_URL, { cache: "reload" }));
     })()
   );
   // Obliga al service worker que espera a que se convierta en uno activo.
