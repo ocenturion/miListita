@@ -14,7 +14,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 btnAdd.addEventListener('click', (e) => {
   // Oculta el botón de instalación
-  contBtnAdd.style.display = 'none';
+  btnAdd.style.display = 'none';
   // Comprueba si el evento "beforeinstallprompt" está definido
   if (deferredPrompt) {
     // Muestra la ventana emergente de instalación

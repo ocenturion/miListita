@@ -58,6 +58,20 @@ body{
     text-align: center;
 }
 
+/* Boton instalacion */
+
+.containerInstalacion{
+    background-color: #FF8181;
+    margin: -10px -10px;
+    padding: 10px;
+    min-width: 10px;
+}
+
+.containerInstalacion>#btnAdd{
+    margin-right: 0;
+    margin-left: auto;
+}
+
 /* Boton agregar */
 
 button {
