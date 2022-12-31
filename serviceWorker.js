@@ -11,6 +11,9 @@ var filesToCache = [
 
 // Instala el Service Worker
 self.addEventListener("install", (e) => {
+    if (navigator.onLine) {
+        caches.delete(cacheName)
+    }
   e.waitUntil(
     caches.open(cacheName).then(function (cache) {
       console.log("[serviceWorker] Caching app shell");
@@ -43,7 +46,6 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(
       // Intentamos encontrar el recurso en el cache
       caches.match(e.request).then((response) => {
-        console.log("[Service Worker] 49: ", e.request);
 
         // Si encontramos el recurso en el cache, lo devolvemos
         if (response) {
