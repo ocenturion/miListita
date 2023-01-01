@@ -73,6 +73,7 @@ self.addEventListener("fetch", (e) => {
       })
     );
   }else{
+    caches.delete(cacheName)
     e.waitUntil(
         caches.open(cacheName).then(function (cache) {
           console.log("[serviceWorker] Caching app shell");
