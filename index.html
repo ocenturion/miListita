@@ -136,11 +136,13 @@
         }
 
         function reloadSubTotal() {
+            navigator.vibrate(10);
+
             //recorremos la tabla y calculamos el total
             let tabla = document.getElementById('listArt').children
             let subTotal = 0
             for (let i = 0; i < tabla.length; i++) {
-                if (!tabla[i].children[0].children[0].checked) {
+                if (!tabla[i].children[0].children[0].children[0].checked) {
                     subTotal += parseFloat(tabla[i].children[3].innerHTML)
                 }
                 document.getElementById('subTotal').innerHTML= subTotal
@@ -299,6 +301,8 @@
         })
 
         document.getElementById('checkAll').addEventListener('click',()=>{
+            navigator.vibrate(10);
+            
             //recorremos la tabla y tildamos todos los check
             let tabla = document.getElementById('listArt').children
             
@@ -317,7 +321,8 @@
         })
 
         document.getElementById('detalle').addEventListener('click',()=>{
-            console.log('entre a detalle ', ascending)
+            navigator.vibrate(10);
+
             document.getElementById('detalle').className= 'btnOrder'
             document.getElementById('monto').className= ''
 
@@ -372,6 +377,7 @@
         })
 
         document.getElementById('monto').addEventListener('click',()=>{
+            navigator.vibrate(10);
             
             document.getElementById('monto').className= 'btnOrder'
             document.getElementById('detalle').className= ''
