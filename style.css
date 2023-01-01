@@ -129,6 +129,29 @@ button {
    transform: translateY(0);
   }
   
+.closeModal{
+    --button_radius: 0.75em;
+   --button_color: #fff;
+   --button_outline_color: #bbb;
+   font-size: 15px;
+   font-weight: bold;
+   border: none;
+   border-radius: var(--button_radius);
+   background: var(--button_outline_color);
+   padding: 0;
+}
+
+.button_Close{
+   display: inline-block;
+    box-sizing: border-box;
+    border: 2px solid #bbb;
+    border-radius: var(--button_radius);
+    padding: 0.70em 1em;
+    background: var(--button_color);
+    color: #bbb;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
 
 .btnCheckAll{
     background-color: #FF8181;
@@ -256,11 +279,16 @@ button {
 }
 
 .btnCancelar{
-    padding: 10px;
-    border-radius: 7px;
-    border: 1px solid rgb(216, 216, 216);
+   --button_radius: 0.75em;
+   --button_color: #fff;
+   --button_outline_color: #bbb;
+   font-size: 15px;
+   font-weight: bold;
+   border: none;
+   border-radius: var(--button_radius);
+   background: #bbb;
+   padding: 0;
 }
-
 
 @media all and (display-mode: standalone) {
     #instalacion{

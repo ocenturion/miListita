@@ -72,5 +72,12 @@ self.addEventListener("fetch", (e) => {
         });
       })
     );
+  }else{
+    e.waitUntil(
+        caches.open(cacheName).then(function (cache) {
+          console.log("[serviceWorker] Caching app shell");
+          return cache.addAll(filesToCache);
+        })
+      );
   }
 });

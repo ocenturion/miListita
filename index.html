@@ -45,10 +45,10 @@
 
         
         <div>
-                <hr>
-                <p class="cantArt">Cant. Art.: <strong><span id="cantArt">0</span></strong></p>
-                <p class="cantArtSelect">Cant. Art. Seleccionados: <strong><span id="cantArtSelect">0</span></strong></p>
-                <hr>
+            <hr>
+            <p class="cantArt">Cant. Art.: <strong><span id="cantArt">0</span></strong></p>
+            <p class="cantArtSelect">Cant. Art. Seleccionados: <strong><span id="cantArtSelect">0</span></strong></p>
+            <hr>
             <table class="table table-striped table-noBorder">
                 <thead>
                     <tr>
@@ -110,13 +110,17 @@
 
     <dialog id="modalConfirmacion" class="modal">
         <div class="modalHeader text-right p-2">
-            <button onclick="modalConfirmacion.close()">X</button>
+            <a id="closeModal" class="closeModal">
+                <span class="button_Close">X</span>
+            </a>
         </div>
         <div class="modalBody m-2">
             <p id="msg"></p>
         </div>
         <div class="text-right m-2">
-            <button onclick="modalConfirmacion.close()" class="btnCancelar">Cancelar</button>
+            <button id="btnCancelar" class="btnCancelar">
+                <span class="button_Close">Cancelar</span>
+            </button>
             <button id="btnAceptar" class="btnAceptar">Aceptar</button>
         </div>
     </dialog>
@@ -421,7 +425,13 @@
             reloadSubTotal()
         })
 
-        
+        document.getElementById('closeModal').addEventListener('click',()=>{
+            modalConfirmacion.close()
+        })
+
+        document.getElementById('btnCancelar').addEventListener('click',()=>{
+            modalConfirmacion.close()
+        })
 
     </script>
 </body>
