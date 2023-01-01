@@ -50,6 +50,14 @@ body{
     font-size: 20px;
 }
 
+.flex-item-1{
+    width: 40%;
+}
+
+.flex-item-2{
+    width: 60%;
+}
+
 .text-right{
     text-align: right;
 }
@@ -194,18 +202,42 @@ button {
 }
 
 .btn-danger{
-    right: 0;
-    margin:10px 5% 1%;
-    padding: 4% 0;
-    text-align: center;
-    background-color: #fff;
-    border: 2px solid #f24;
     position: fixed;
     bottom: 0;
+    padding: 0 0 0.1em 0;
     width: 25%;
-    border-radius: 7px;
-    color: #ff2424;
+    right: 0;
+    text-align: center;
+    margin:10px 5% 1%;
+    --button_radius: 0.75em;
+   font-size: 15px;
+   font-weight: bold;
+   border: none;
+   border-radius: var(--button_radius);
+   background: red;
 }
+
+.btn-danger-top{
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: var(--button_radius);
+    padding: 0.60em 1em;
+    background: #fff;
+    color: red;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+.btn-danger:hover .btn-danger-top {
+    /* Pull the button upwards when hovered */
+   transform: translateY(-0.33em);
+  }
+  
+  .btn-danger:active .btn-danger-top {
+    /* Push the button downwards when pressed */
+   transform: translateY(0);
+  }
 
 .text-primary{
     color: #FF8181;
@@ -246,6 +278,11 @@ button {
 .cantArt,.cantArtSelect{
     color: #FF8181;
     font-size: small;
+}
+
+.cantArtValor,.cantArtSelectValor{
+    color: #FF8181;
+    margin: 0;
 }
 
 /* Modal */
