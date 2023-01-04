@@ -1,6 +1,6 @@
 {
-  "name": "La listita",
-  "short_name": "La listita",
+  "name": "listaDelSuper",
+  "short_name": "listaDelSuper",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
