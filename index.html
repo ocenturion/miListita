@@ -148,6 +148,7 @@
             for (let i = 0; i < tabla.length; i++) {
                 if (!tabla[i].children[0].children[0].children[0].checked) {
                     subTotal += parseFloat(tabla[i].children[3].innerHTML)
+                    subTotal = Math.round(subTotal * Math.pow(10,2))/ Math.pow(10,2)
                 }
                 document.getElementById('subTotal').innerHTML= subTotal
             }
@@ -194,6 +195,7 @@
             calcCantArt()
             calcTotal()
             reloadSubTotal()
+            document.getElementById('precio').focus()
         }
 
         function calcCantArt() {
@@ -223,9 +225,9 @@
             let total = 0
             for (let i = 0; i < tabla.length; i++) {
                 total += parseFloat(tabla[i].children[3].innerHTML)
-                
-                document.getElementById('total').innerHTML= total
+                total = Math.round(total * Math.pow(10,2))/ Math.pow(10,2)    
             }
+            document.getElementById('total').innerHTML= total
         }
 
         function valEstadoCheckAll() {
