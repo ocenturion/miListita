@@ -1,188 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>listaDelSuper</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FF8181">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#FF8181" />
     <link rel="apple-touch-icon" href="images/icons/icon-144x144.png" />
     <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
     <script>
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/serviceWorker.js');
-        }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/serviceWorker.js");
+      }
     </script>
-      
-</head>
-<body>
+  </head>
+  <body>
     <div id="instalacion" class="containerInstalacion">
-        <a id="btnAdd">
-            <span id="button_top">Instalar</span>
-        </a>
+      <a id="btnAdd">
+        <span id="button_top">Instalar</span>
+      </a>
     </div>
     <div class="container">
-        <div class="flex-container">
-            <label for="precio">Precio:</label>
-            <input type="number" id="precio" placeholder="0">
-        </div>
-        <div class="flex-container">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" placeholder="1">
-        </div>
-        <div class="flex-container">
-            <label for="art">Articulo</label>
-            <textarea name="articulo" id="art" cols="30" rows="4" placeholder="Articulo generico"></textarea>
-        </div>
-        <div class="text-right">
-            <button onclick="agregarArt(event)">
-                <span class="button_top"> Agregar</span>
-            </button>
-            <!-- <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a> -->
-        </div>
+      <div class="flex-container">
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" placeholder="0" />
+      </div>
+      <div class="flex-container">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" placeholder="1" />
+      </div>
+      <div class="flex-container">
+        <label for="art">Articulo</label>
+        <textarea
+          name="articulo"
+          id="art"
+          cols="30"
+          rows="4"
+          placeholder="Articulo generico"
+        ></textarea>
+      </div>
+      <div class="text-right">
+        <button onclick="agregarArt(event)">
+          <span class="button_top"> Agregar</span>
+        </button>
+        <!-- <a href="" class="btnAgregar" onclick="agregarArt(event)">Agregar</a> -->
+      </div>
 
-        
-        <div class="container-table">
-            <hr>
-            <div class="flex-container text-center">
-                <div class="flex-item-1">
-                    <p class="cantArt">Cant. Art.:</p>
-                </div>
-                <div class="flex-item-2">
-                    <p class="cantArtSelect">Cant. Art. Seleccionados:</p>
-                </div>
-            </div>
-            <div class="flex-container text-center">
-                <div class="flex-item-1">
-                    <strong><h3 class="cantArtValor" id="cantArt">0</h3></strong>
-                </div>
-                <div class="flex-item-2">
-                    <strong><h3 class="cantArtSelectValor" id="cantArtSelect">0</h3></strong>
-                </div>
-            </div>
-            <hr>
-            <table class="table table-striped table-noBorder">
-                <thead>
-                    <tr>
-                        <th style="width: 1%; padding: 5px;">
-                            <a id="checkAll" class="btnCheckNone">
-                                <svg width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                                </svg>
-                            </a>
-                        </th>
-                        <th style="width: 65%; text-align: center;">
-                            <a id="detalle">
-                                Descripcion
-                                <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                                  </svg>
-                            </a>
-                        </th>
-                        <th style="width: 3%"></th>
-                        <th style="width: 30%; text-align: center;">
-                            <a id="monto">
-                                Precio
-                                <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                                  </svg>
-                            </a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="listArt">
-                    
-                </tbody>
-            </table>
-
-            <div id="totales" class="btn-primary">
-                <h3 class="totalArt">TOTAL: <strong><br>$<span id="total">0</span></strong></h3>
-                <p class="totalArtSelec">Total art. no tildados: <strong><br>$<span id="subTotal">0</span></strong></p>
-            </div>
-            <div class="btn-danger" id="limpiarTabla">
-                <span class="btn-danger-top">
-                    <svg width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                    </svg>
-                </span>
-            </div>
+      <div class="container-table">
+        <hr />
+        <div class="flex-container text-center">
+          <div class="flex-item-1">
+            <p class="cantArt">Cant. Art.:</p>
+          </div>
+          <div class="flex-item-2">
+            <p class="cantArtSelect">Cant. Art. Seleccionados:</p>
+          </div>
         </div>
+        <div class="flex-container text-center">
+          <div class="flex-item-1">
+            <strong><h3 class="cantArtValor" id="cantArt">0</h3></strong>
+          </div>
+          <div class="flex-item-2">
+            <strong
+              ><h3 class="cantArtSelectValor" id="cantArtSelect">0</h3></strong
+            >
+          </div>
+        </div>
+        <hr />
+        <table class="table table-striped table-noBorder">
+          <thead>
+            <tr>
+              <th style="width: 1%; padding: 5px">
+                <a id="checkAll" class="btnCheckNone">
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-check"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+                    />
+                  </svg>
+                </a>
+              </th>
+              <th style="width: 65%; text-align: center">
+                <a id="detalle">
+                  Descripcion
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-down-up"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"
+                    />
+                  </svg>
+                </a>
+              </th>
+              <th style="width: 3%"></th>
+              <th style="width: 30%; text-align: center">
+                <a id="monto">
+                  Precio
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-down-up"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"
+                    />
+                  </svg>
+                </a>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="listArt"></tbody>
+        </table>
+
+        <div id="totales" class="btn-primary">
+          <h3 class="totalArt">
+            TOTAL: <strong><br />$<span id="total">0</span></strong>
+          </h3>
+          <p class="totalArtSelec">
+            Total art. no tildados:
+            <strong><br />$<span id="subTotal">0</span></strong>
+          </p>
+        </div>
+        <div class="btn-danger" id="limpiarTabla">
+          <span class="btn-danger-top">
+            <svg
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-trash"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
 
     <dialog id="modalConfirmacion" class="modal">
-        <div class="modalHeader text-right p-2">
-            <a id="closeModal" class="closeModal">
-                <span class="button_Close">X</span>
-            </a>
-        </div>
-        <div class="modalBody m-2">
-            <p id="msg"></p>
-        </div>
-        <div class="text-right m-2">
-            <button id="btnCancelar" class="btnCancelar">
-                <span class="button_Close">Cancelar</span>
-            </button>
-            <button id="btnAceptar" class="btnAceptar">Aceptar</button>
-        </div>
+      <div class="modalHeader text-right p-2">
+        <a id="closeModal" class="closeModal">
+          <span class="button_Close">X</span>
+        </a>
+      </div>
+      <div class="modalBody m-2">
+        <p id="msg"></p>
+      </div>
+      <div class="text-right m-2">
+        <button id="btnCancelar" class="btnCancelar">
+          <span class="button_Close">Cancelar</span>
+        </button>
+        <button id="btnAceptar" class="btnAceptar">Aceptar</button>
+      </div>
     </dialog>
 
     <div id="msgBox">
-        <div id="msgBoxIcon" class="msgBoxIcon">
-            <!-- icon -->
-        </div>
-        <div id="msgBoxMsg" class="msgBoxMsg">
-            <!-- mensaje -->
-        </div>
+      <div id="msgBoxIcon" class="msgBoxIcon">
+        <!-- icon -->
+      </div>
+      <div id="msgBoxMsg" class="msgBoxMsg">
+        <!-- mensaje -->
+      </div>
     </div>
 
     <script src="main.js"></script>
 
     <script>
-        window.onload = ()=>{
-            calcCantArt()
-            calcCantArtSelect()
-            calcTotal()
-            reloadSubTotal()
+      window.onload = () => {
+        cargarArticulosDesdeLocalStorage(); // Cargar desde localStorage
+        calcCantArt();
+        calcCantArtSelect();
+        calcTotal();
+        reloadSubTotal();
+      };
+
+      function cargarArticulosDesdeLocalStorage() {
+        let articulosGuardados = localStorage.getItem("articulos");
+        if (articulosGuardados) {
+          let articulos = JSON.parse(articulosGuardados);
+          let tablaHtml = "";
+
+          for (let i = 0; i < articulos.length; i++) {
+            tablaHtml += `
+                <tr>
+                    <td style="width: 6%;padding:5px" class="text-center">
+                        <label class="containerCheck">
+                            <input type="checkbox" onclick="reloadSubTotal(this)">
+                            <div class="checkmark"></div>
+                        </label>
+                    </td>
+                    <td style="width: 55%" class="detalle">
+                        ${articulos[i].detalle}<br>
+                        <span class="text-primary">${articulos[i].cantidad} x ${
+              articulos[i].precio
+            }</span>
+                    </td>
+                    <td style="width: 4%">$</td>
+                    <td style="width: 35%;text-align: right;" class="monto">
+                        ${parseFloat(articulos[i].monto, 2)}
+                    </td>
+                </tr>
+            `;
+          }
+
+          document.getElementById("listArt").innerHTML = tablaHtml;
+        }
+      }
+
+      function reloadSubTotal() {
+        navigator.vibrate(10);
+
+        //recorremos la tabla y calculamos el total
+        let tabla = document.getElementById("listArt").children;
+        let subTotal = 0;
+        for (let i = 0; i < tabla.length; i++) {
+          if (!tabla[i].children[0].children[0].children[0].checked) {
+            subTotal += parseFloat(tabla[i].children[3].innerHTML);
+            subTotal = Math.round(subTotal * Math.pow(10, 2)) / Math.pow(10, 2);
+          }
+          document.getElementById("subTotal").innerHTML = subTotal;
         }
 
-        function reloadSubTotal() {
-            navigator.vibrate(10);
+        calcCantArtSelect();
+        valEstadoCheckAll();
+      }
 
-            //recorremos la tabla y calculamos el total
-            let tabla = document.getElementById('listArt').children
-            let subTotal = 0
-            for (let i = 0; i < tabla.length; i++) {
-                if (!tabla[i].children[0].children[0].children[0].checked) {
-                    subTotal += parseFloat(tabla[i].children[3].innerHTML)
-                    subTotal = Math.round(subTotal * Math.pow(10,2))/ Math.pow(10,2)
-                }
-                document.getElementById('subTotal').innerHTML= subTotal
-            }
+      function agregarArt(e) {
+        e.preventDefault();
+        navigator.vibrate(20);
 
-            calcCantArtSelect()
-            valEstadoCheckAll()
+        let precio = document.getElementById("precio").value;
+        if (precio.length == 0) {
+          precio = 0;
         }
 
-        function agregarArt(e) {
-            e.preventDefault()
-            navigator.vibrate(20);
+        let cant = document.getElementById("cantidad").value;
+        if (cant.length == 0) {
+          cant = 1;
+        }
 
-            let precio = document.getElementById('precio').value
-            if(precio.length == 0){
-                precio = 0
-            }
+        let art =
+          document.getElementById("art").value.length > 0
+            ? document.getElementById("art").value
+            : "Articulo generico";
 
-            let cant = document.getElementById('cantidad').value
-            if (cant.length == 0) {
-                cant=1
-            }
-            
-            let art = document.getElementById('art').value.length>0?document.getElementById('art').value:'Articulo generico'
-
-            document.getElementById('listArt').innerHTML += `<tr>
+        document.getElementById("listArt").innerHTML += `<tr>
                     <td style="width: 6%;padding:5px" class="text-center">
                         <label class="containerCheck">
                             <input type="checkbox" onclick="reloadSubTotal(this)">
@@ -194,312 +277,331 @@
                         <br><span class="text-primary">${cant} x ${precio}</span>
                     </td>
                     <td style="width: 4%">$</td>
-                    <td style="width: 35%;text-align: right;">${parseFloat(precio * cant,2)}</td>
+                    <td style="width: 35%;text-align: right;">${parseFloat(
+                      precio * cant,
+                      2
+                    )}</td>
                 </tr>
-            `
+            `;
 
-            document.getElementById('precio').value=''
-            document.getElementById('cantidad').value=''
-            document.getElementById('art').value=''
-            calcCantArt()
-            calcTotal()
-            reloadSubTotal()
-            document.getElementById('precio').focus()
-            msgBoxInfo('Articulo agregado')
+        document.getElementById("precio").value = "";
+        document.getElementById("cantidad").value = "";
+        document.getElementById("art").value = "";
+        calcCantArt();
+        calcTotal();
+        reloadSubTotal();
+        document.getElementById("precio").focus();
+        msgBoxInfo("Articulo agregado");
+        guardarArticulosEnLocalStorage();
+      }
+
+      function guardarArticulosEnLocalStorage() {
+        let tabla = document.getElementById("listArt").children;
+        let articulos = [];
+
+        for (let i = 0; i < tabla.length; i++) {
+          let detalle = tabla[i].querySelector(".detalle").textContent.trim();
+          let monto = parseFloat(
+            tabla[i].querySelector(".monto").textContent.trim()
+          );
+
+          articulos.push({ detalle, monto });
         }
 
-        function calcCantArt() {
-            let cantArt = document.getElementById('listArt').children.length
-            document.getElementById('cantArt').innerHTML = cantArt
+        localStorage.setItem("articulos", JSON.stringify(articulos));
+      }
+
+      function calcCantArt() {
+        let cantArt = document.getElementById("listArt").children.length;
+        document.getElementById("cantArt").innerHTML = cantArt;
+      }
+
+      function calcCantArtSelect() {
+        // Obtener todos los input de tipo checkbox en la tabla
+        let checkboxes = document.querySelectorAll(
+          "table input[type=checkbox]"
+        );
+
+        // Contador para llevar la cuenta de los checkboxes seleccionados
+        let contador = 0;
+
+        // Recorrer los checkboxes y sumar 1 al contador si está seleccionado
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            contador++;
+          }
         }
+        document.getElementById("cantArtSelect").innerHTML = contador;
+      }
 
-        function calcCantArtSelect() {
-            // Obtener todos los input de tipo checkbox en la tabla
-            let checkboxes = document.querySelectorAll("table input[type=checkbox]");
-
-            // Contador para llevar la cuenta de los checkboxes seleccionados
-            let contador = 0;
-
-            // Recorrer los checkboxes y sumar 1 al contador si está seleccionado
-            for (var i = 0; i < checkboxes.length; i++) {
-              if (checkboxes[i].checked) {
-                contador++;
-              }
-            }
-            document.getElementById('cantArtSelect').innerHTML = contador
+      function calcTotal() {
+        //recorremos la tabla y calculamos el total
+        let tabla = document.getElementById("listArt").children;
+        let total = 0;
+        for (let i = 0; i < tabla.length; i++) {
+          total += parseFloat(tabla[i].children[3].innerHTML);
+          total = Math.round(total * Math.pow(10, 2)) / Math.pow(10, 2);
         }
+        document.getElementById("total").innerHTML = total;
+      }
 
-        function calcTotal() {
-            //recorremos la tabla y calculamos el total
-            let tabla = document.getElementById('listArt').children
-            let total = 0
-            for (let i = 0; i < tabla.length; i++) {
-                total += parseFloat(tabla[i].children[3].innerHTML)
-                total = Math.round(total * Math.pow(10,2))/ Math.pow(10,2)    
-            }
-            document.getElementById('total').innerHTML= total
+      function valEstadoCheckAll() {
+        let tabla = document.getElementById("listArt").children;
+        let allChecked = true;
+        let cantSelec = 0;
+        let cantNoSelec = 0;
+        for (let i = 0; i < tabla.length; i++) {
+          if (!tabla[i].children[0].children[0].children[0].checked) {
+            cantNoSelec++;
+          } else {
+            cantSelec++;
+          }
         }
-
-        function valEstadoCheckAll() {
-            let tabla = document.getElementById('listArt').children
-            let allChecked = true
-            let cantSelec =0
-            let cantNoSelec =0
-            for (let i = 0; i < tabla.length; i++) {
-                if (!tabla[i].children[0].children[0].children[0].checked) {
-                    cantNoSelec++
-                }else{
-                    cantSelec++
-                }
-            }
-            if (cantNoSelec == tabla.length) {
-                document.getElementById('checkAll').className= 'btnCheckNone'
-                checkAll=true
-            }else if (cantSelec == tabla.length) {
-                document.getElementById('checkAll').className= 'btnCheckAll'
-                checkAll=false
-            }
+        if (cantNoSelec == tabla.length) {
+          document.getElementById("checkAll").className = "btnCheckNone";
+          checkAll = true;
+        } else if (cantSelec == tabla.length) {
+          document.getElementById("checkAll").className = "btnCheckAll";
+          checkAll = false;
         }
+      }
 
-        function msgBoxInfo(msg) {
-            clearInterval()
-            document.getElementById('msgBox').className='msgBoxInfo'
-            document.getElementById('msgBoxIcon').innerHTML=`<svg width="20" height="20" fill="currentColor" class="bi bi-chat-text-fill" viewBox="0 0 16 16">
+      function msgBoxInfo(msg) {
+        clearInterval();
+        document.getElementById("msgBox").className = "msgBoxInfo";
+        document.getElementById(
+          "msgBoxIcon"
+        ).innerHTML = `<svg width="20" height="20" fill="currentColor" class="bi bi-chat-text-fill" viewBox="0 0 16 16">
                 <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
-                </svg>`
-            document.getElementById('msgBoxMsg').innerHTML=msg.slice(0,63)
-            hideMsgBox()
-        }
+                </svg>`;
+        document.getElementById("msgBoxMsg").innerHTML = msg.slice(0, 63);
+        hideMsgBox();
+      }
 
-        function msgBoxAlert(msg) {
-            document.getElementById('msgBox').className='msgBoxAlert'
-            document.getElementById('msgBoxIcon').innerHTML=`<svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+      function msgBoxAlert(msg) {
+        document.getElementById("msgBox").className = "msgBoxAlert";
+        document.getElementById(
+          "msgBoxIcon"
+        ).innerHTML = `<svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg>`
-            document.getElementById('msgBoxMsg').innerHTML=msg.slice(0,63)
-            hideMsgBox()
-        }
+            </svg>`;
+        document.getElementById("msgBoxMsg").innerHTML = msg.slice(0, 63);
+        hideMsgBox();
+      }
 
-        function msgBoxDanger(msg) {
-            document.getElementById('msgBox').className='msgBoxDanger'
-            document.getElementById('msgBoxIcon').innerHTML=`<svg width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+      function msgBoxDanger(msg) {
+        document.getElementById("msgBox").className = "msgBoxDanger";
+        document.getElementById(
+          "msgBoxIcon"
+        ).innerHTML = `<svg width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-            </svg>`
-            document.getElementById('msgBoxMsg').innerHTML=msg.slice(0,63)
-            hideMsgBox()
-        }
+            </svg>`;
+        document.getElementById("msgBoxMsg").innerHTML = msg.slice(0, 63);
+        hideMsgBox();
+      }
 
-        function hideMsgBox() {
-            setTimeout(
-                function() {   
-                    document.getElementById('msgBoxIcon').innerHTML=''
-                    document.getElementById('msgBoxMsg').innerHTML=''
-                    document.getElementById('msgBox').className=''
-                },
-                5000
-            )
-        }
-
+      function hideMsgBox() {
+        setTimeout(function () {
+          document.getElementById("msgBoxIcon").innerHTML = "";
+          document.getElementById("msgBoxMsg").innerHTML = "";
+          document.getElementById("msgBox").className = "";
+        }, 5000);
+      }
     </script>
     <script>
-        let checkAll = true
-        let ascending = true
+      let checkAll = true;
+      let ascending = true;
 
-        document.getElementById('precio').addEventListener('click',()=>{
-            document.getElementById('totales').style.display='absolute'
-        })
+      document.getElementById("precio").addEventListener("click", () => {
+        document.getElementById("totales").style.display = "absolute";
+      });
 
-        // Programacion basada en eventos para que el codigo sea mas facil de mantener y entender, segun chatGPT
-        document.getElementById('limpiarTabla').addEventListener('click', ()=>{
-            navigator.vibrate([50,100,50]);
+      // Programacion basada en eventos para que el codigo sea mas facil de mantener y entender, segun chatGPT
+      document.getElementById("limpiarTabla").addEventListener("click", () => {
+        navigator.vibrate([50, 100, 50]);
 
-            let tabla = document.getElementById('listArt').children
-            let cantSelec =0
-            
-            for (let i = 0; i < tabla.length; i++) {
-                if (tabla[i].children[0].children[0].children[0].checked) {
-                    cantSelec++
-                }
+        let tabla = document.getElementById("listArt").children;
+        let cantSelec = 0;
+
+        for (let i = 0; i < tabla.length; i++) {
+          if (tabla[i].children[0].children[0].children[0].checked) {
+            cantSelec++;
+          }
+        }
+
+        if (cantSelec == tabla.length || cantSelec == 0) {
+          document.getElementById("msg").innerHTML =
+            '¿Esta seguro que desea eliminar <span class="text-primary"><strong>Todos</strong></span> los articulos?';
+        } else if (cantSelec < tabla.length && cantSelec > 0) {
+          document.getElementById("msg").innerHTML =
+            "¿Esta seguro que desea eliminar los articulos seleccionados?";
+        }
+        modalConfirmacion.showModal();
+      });
+
+      document.getElementById("btnAceptar").addEventListener("click", () => {
+        navigator.vibrate(10);
+
+        let tabla = document.getElementById("listArt").children;
+        let cantSelec = 0;
+
+        for (let i = 0; i < tabla.length; i++) {
+          if (tabla[i].children[0].children[0].children[0].checked) {
+            cantSelec++;
+          }
+        }
+
+        if (cantSelec == tabla.length || cantSelec == 0) {
+          document.getElementById("listArt").innerHTML = "";
+        } else if (cantSelec < tabla.length && cantSelec > 0) {
+          for (let i = 0; i < tabla.length; i++) {
+            if (tabla[i].children[0].children[0].children[0].checked) {
+              tabla[i].parentNode.removeChild(tabla[i]);
+              i = 0;
             }
-            
-            if (cantSelec == tabla.length || cantSelec == 0) {
-                document.getElementById('msg').innerHTML='¿Esta seguro que desea eliminar <span class="text-primary"><strong>Todos</strong></span> los articulos?'
-            }else if (cantSelec < tabla.length && cantSelec > 0) {
-                document.getElementById('msg').innerHTML='¿Esta seguro que desea eliminar los articulos seleccionados?'
+          }
+        }
+
+        calcCantArt();
+        calcCantArtSelect();
+        modalConfirmacion.close();
+      });
+
+      document.getElementById("checkAll").addEventListener("click", () => {
+        navigator.vibrate(10);
+
+        //recorremos la tabla y tildamos todos los check
+        let tabla = document.getElementById("listArt").children;
+
+        for (let i = 0; i < tabla.length; i++) {
+          tabla[i].children[0].children[0].children[0].checked = checkAll;
+        }
+        if (checkAll) {
+          document.getElementById("checkAll").className = "btnCheckAll";
+          checkAll = false;
+        } else {
+          document.getElementById("checkAll").className = "btnCheckNone";
+          checkAll = true;
+        }
+        calcCantArtSelect();
+        reloadSubTotal();
+      });
+
+      document.getElementById("detalle").addEventListener("click", () => {
+        navigator.vibrate(10);
+
+        document.getElementById("detalle").className = "btnOrder";
+        document.getElementById("monto").className = "";
+
+        var table = document.getElementById("listArt");
+        var rows = table.rows;
+        let rowArray = [];
+
+        for (let i = 0; i < rows.length; i++) {
+          rowArray.push({
+            id: i,
+            detalle: rows[i].cells[1].textContent.trim().toLowerCase(),
+            row: "<tr>" + rows[i].innerHTML.trim() + "</tr>",
+          });
+        }
+        var compare = function (row1, row2) {
+          // Obtener el valor de la celda en la columna especificada
+          var val1 = row1.detalle;
+          var val2 = row2.detalle;
+          // Comparar los valores y devolver el resultado
+          if (ascending) {
+            // Orden ascendente
+            if (val1 < val2) {
+              return -1;
             }
-            modalConfirmacion.showModal()
-        })
-
-        document.getElementById('btnAceptar').addEventListener('click',()=>{
-            navigator.vibrate(10);
-
-            let tabla = document.getElementById('listArt').children
-            let cantSelec =0
-            
-            for (let i = 0; i < tabla.length; i++) {
-                if (tabla[i].children[0].children[0].children[0].checked) {
-                    cantSelec++
-                }
+            if (val1 > val2) {
+              return 1;
             }
-            
-            if (cantSelec == tabla.length || cantSelec == 0) {
-                document.getElementById('listArt').innerHTML=''                
-            }else if (cantSelec < tabla.length && cantSelec > 0) {
-                for (let i = 0; i < tabla.length; i++) {
-                    if (tabla[i].children[0].children[0].children[0].checked) {
-                        tabla[i].parentNode.removeChild(tabla[i])
-                        i=0
-                    }
-                }
+          } else {
+            // Orden descendente
+            if (val1 > val2) {
+              return -1;
             }
-
-            calcCantArt()
-            calcCantArtSelect()
-            modalConfirmacion.close()
-        })
-
-        document.getElementById('checkAll').addEventListener('click',()=>{
-            navigator.vibrate(10);
-            
-            //recorremos la tabla y tildamos todos los check
-            let tabla = document.getElementById('listArt').children
-            
-            for (let i = 0; i < tabla.length; i++) {
-                tabla[i].children[0].children[0].children[0].checked= checkAll
+            if (val1 < val2) {
+              return 1;
             }
-            if (checkAll) {
-                document.getElementById('checkAll').className= 'btnCheckAll'
-                checkAll=false
-            }else{
-                document.getElementById('checkAll').className= 'btnCheckNone'
-                checkAll=true
+          }
+          return 0;
+        };
+        // Ordenar la matriz de filas utilizando la función de comparación
+        rowArray.sort(compare);
+        ascending ? (ascending = false) : (ascending = true);
+
+        table.innerHTML = "";
+        // Reinsertar las filas en el orden correcto
+        for (var i = 0; i < rowArray.length; i++) {
+          table.innerHTML += rowArray[i].row;
+        }
+        reloadSubTotal();
+      });
+
+      document.getElementById("monto").addEventListener("click", () => {
+        navigator.vibrate(10);
+
+        document.getElementById("monto").className = "btnOrder";
+        document.getElementById("detalle").className = "";
+
+        var table = document.getElementById("listArt");
+        var rows = table.rows;
+        let rowArray = [];
+
+        for (let i = 0; i < rows.length; i++) {
+          rowArray.push({
+            id: i,
+            monto: rows[i].cells[3].textContent.trim(),
+            row: "<tr>" + rows[i].innerHTML.trim() + "</tr>",
+          });
+        }
+        var compare = function (row1, row2) {
+          // Obtener el valor de la celda en la columna especificada
+          var val1 = parseFloat(row1.monto);
+          var val2 = parseFloat(row2.monto);
+          // Comparar los valores y devolver el resultado
+          if (ascending) {
+            // Orden ascendente
+            if (val1 < val2) {
+              return -1;
             }
-            calcCantArtSelect()
-            reloadSubTotal()
-        })
-
-        document.getElementById('detalle').addEventListener('click',()=>{
-            navigator.vibrate(10);
-
-            document.getElementById('detalle').className= 'btnOrder'
-            document.getElementById('monto').className= ''
-
-            var table = document.getElementById('listArt');
-            var rows = table.rows;
-            let rowArray = []
-
-            for (let i = 0; i < rows.length; i++) {
-                rowArray.push(
-                    {
-                        'id':i,
-                        'detalle': rows[i].cells[1].textContent.trim().toLowerCase(),
-                        'row': '<tr>'+rows[i].innerHTML.trim()+'</tr>'
-                    }
-                )
+            if (val1 > val2) {
+              return 1;
             }
-            var compare = function(row1, row2) {
-                // Obtener el valor de la celda en la columna especificada
-                var val1 = row1.detalle;
-                var val2 = row2.detalle;
-                // Comparar los valores y devolver el resultado
-                if (ascending) {
-                  // Orden ascendente
-                  if (val1 < val2) {
-                    return -1;
-                  }
-                  if (val1 > val2) {
-                    return 1;
-                  }
-                } else {
-                  // Orden descendente
-                  if (val1 > val2) {
-                    return -1;
-                  }
-                  if (val1 < val2) {
-                    return 1;
-                  }
-                }
-                return 0;
-            };
-            // Ordenar la matriz de filas utilizando la función de comparación
-            rowArray.sort(compare)
-            ascending?ascending=false:ascending=true
-            
-
-            table.innerHTML = ''
-            // Reinsertar las filas en el orden correcto
-            for (var i = 0; i < rowArray.length; i++) {
-                table.innerHTML+= rowArray[i].row;
+          } else {
+            // Orden descendente
+            if (val1 > val2) {
+              return -1;
             }
-            reloadSubTotal()
-        })
-
-        document.getElementById('monto').addEventListener('click',()=>{
-            navigator.vibrate(10);
-            
-            document.getElementById('monto').className= 'btnOrder'
-            document.getElementById('detalle').className= ''
-
-            var table = document.getElementById('listArt');
-            var rows = table.rows;
-            let rowArray = []
-
-            for (let i = 0; i < rows.length; i++) {
-                rowArray.push(
-                    {
-                        'id':i,
-                        'monto': rows[i].cells[3].textContent.trim(),
-                        'row': '<tr>'+rows[i].innerHTML.trim()+'</tr>'
-                    }
-                )
+            if (val1 < val2) {
+              return 1;
             }
-            var compare = function(row1, row2) {
-                // Obtener el valor de la celda en la columna especificada
-                var val1 = parseFloat(row1.monto);
-                var val2 = parseFloat(row2.monto);
-                // Comparar los valores y devolver el resultado
-                if (ascending) {
-                  // Orden ascendente
-                  if (val1 < val2) {
-                    return -1;
-                  }
-                  if (val1 > val2) {
-                    return 1;
-                  }
-                } else {
-                  // Orden descendente
-                  if (val1 > val2) {
-                    return -1;
-                  }
-                  if (val1 < val2) {
-                    return 1;
-                  }
-                }
-                return 0;
-            };
-            // Ordenar la matriz de filas utilizando la función de comparación
-            rowArray.sort(compare)
-            ascending?ascending=false:ascending=true
-            
+          }
+          return 0;
+        };
+        // Ordenar la matriz de filas utilizando la función de comparación
+        rowArray.sort(compare);
+        ascending ? (ascending = false) : (ascending = true);
 
-            table.innerHTML = ''
-            // Reinsertar las filas en el orden correcto
-            for (var i = 0; i < rowArray.length; i++) {
-                table.innerHTML+= rowArray[i].row;
-            }
-            reloadSubTotal()
-        })
+        table.innerHTML = "";
+        // Reinsertar las filas en el orden correcto
+        for (var i = 0; i < rowArray.length; i++) {
+          table.innerHTML += rowArray[i].row;
+        }
+        reloadSubTotal();
+      });
 
-        document.getElementById('closeModal').addEventListener('click',()=>{
-            navigator.vibrate(10);
-            modalConfirmacion.close()
-        })
+      document.getElementById("closeModal").addEventListener("click", () => {
+        navigator.vibrate(10);
+        modalConfirmacion.close();
+      });
 
-        document.getElementById('btnCancelar').addEventListener('click',()=>{
-            navigator.vibrate(10);
-            modalConfirmacion.close()
-        })
-
+      document.getElementById("btnCancelar").addEventListener("click", () => {
+        navigator.vibrate(10);
+        modalConfirmacion.close();
+      });
     </script>
-</body>
+  </body>
 </html>
