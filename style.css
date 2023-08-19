@@ -396,3 +396,63 @@ button {
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
    }
+
+
+/* Msg Box */
+
+.msgBoxInfo{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #75b798;
+    width: 200px;
+    height: 60px;
+    border-radius: 7px;
+    border: 2px solid #0f5132;
+    color: white;
+}
+
+.msgBoxAlert{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ffda6a;
+    width: 200px;
+    height: 60px;
+    border-radius: 7px;
+    border: 2px solid #664d03;
+    color: #664d03;
+}
+
+.msgBoxDanger{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #842029;
+    width: 200px;
+    height: 60px;
+    border-radius: 7px;
+    border:2px solid #ea868f;
+    color: #ea868f;
+}
+
+.msgBoxIcon{
+    width: 25%;
+    display: inline;
+    text-align: center;
+    align-self: center;
+}
+
+.msgBoxMsg{
+    width: 75%;
+    align-self: center;
+}
