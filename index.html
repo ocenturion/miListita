@@ -32,7 +32,7 @@
         <input type="number" id="cantidad" placeholder="1" />
       </div>
       <div class="flex-container">
-        <label for="art">Articulo</label>
+        <label for="art">Articulo:</label>
         <textarea
           name="articulo"
           id="art"
@@ -466,6 +466,8 @@
 
         calcCantArt();
         calcCantArtSelect();
+        localStorage.removeItem('articulos');
+        guardarArticulosEnLocalStorage();
         modalConfirmacion.close();
       });
 
