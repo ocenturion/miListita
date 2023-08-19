@@ -273,7 +273,7 @@
                         </label>
                     </td>
                     <td style="width: 55%">
-                        ${art} 
+                        <span>${art}</span>
                         <br><span class="text-primary">${cant} x ${precio}</span>
                     </td>
                     <td style="width: 4%">$</td>
@@ -300,9 +300,9 @@
         let articulos = [];
 
         for (let i = 0; i < tabla.length; i++) {
-          let detalle = tabla[i].querySelector(".detalle").textContent.trim();
+          let detalle = tabla[i].children[1].children[0].innerHTML;
           let monto = parseFloat(
-            tabla[i].querySelector(".monto").textContent.trim()
+            tabla[i].children[1].children[2].innerHTML
           );
 
           articulos.push({ detalle, monto });
