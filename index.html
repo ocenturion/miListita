@@ -211,14 +211,15 @@
                         </label>
                     </td>
                     <td style="width: 55%" class="detalle">
-                        ${articulos[i].detalle}<br>
-                        <span class="text-primary">${articulos[i].cantidad} x ${
-              articulos[i].precio
-            }</span>
+                        <span>${articulos[i].detalle}</span>
+                        <br>
+                        <span class="text-primary">
+                            ${articulos[i].cantidad} x ${articulos[i].precio}
+                        </span>
                     </td>
                     <td style="width: 4%">$</td>
                     <td style="width: 35%;text-align: right;" class="monto">
-                        ${parseFloat(articulos[i].monto, 2)}
+                        ${parseFloat(articulos[i].precio, 2)* parseInt(articulos[i].cantidad)}
                     </td>
                 </tr>
             `;
@@ -301,11 +302,12 @@
 
         for (let i = 0; i < tabla.length; i++) {
           let detalle = tabla[i].children[1].children[0].innerHTML;
-          let monto = parseFloat(
-            tabla[i].children[1].children[2].innerHTML
+          let cantidad= tabla[i].children[1].children[2].innerHTML.split('x')[0].trim();
+          let precio = parseFloat(
+            tabla[i].children[1].children[2].innerHTML.split('x')[1].trim()
           );
 
-          articulos.push({ detalle, monto });
+          articulos.push({ detalle, cantidad, precio });
         }
 
         localStorage.setItem("articulos", JSON.stringify(articulos));
