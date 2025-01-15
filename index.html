@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>listaDelSuper</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#FF8181" />
     <link rel="apple-touch-icon" href="images/icons/icon-144x144.png" />
     <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/serviceWorker.js");
+        navigator.serviceWorker.register("serviceWorker.js");
       }
     </script>
   </head>
@@ -469,7 +469,7 @@
             }
           }
         }
-
+        calcTotal();
         calcCantArt();
         calcCantArtSelect();
         localStorage.removeItem("articulos");
